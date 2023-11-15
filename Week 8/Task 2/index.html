@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Filter button click event
+        $(".filter-buttons button").click(function () {
+          var category = $(this).attr("data-filter");
+
+          // Show all images if the category is 'all', otherwise filter by category
+          if (category === "all") {
+            $(".image").show();
+          } else {
+            $(".image").hide();
+            $(".image." + category).show();
+          }
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="../Task 1/index.html">Interactive Contact Form</a>
+    <br />
+    <a href="../Task 3/index.html">Drag and Drop Planner</a>
+
+    <section class="container">
+      <div class="filter-buttons">
+        <button data-filter="all">All</button>
+        <button data-filter="nature">Nature</button>
+        <button data-filter="animals">Animals</button>
+        <button data-filter="travel">Travel</button>
+      </div>
+
+      <div class="image-gallery">
+        <div class="image nature">
+          <!-- 'nature' is the category -->
+          <img src="img/Nature/nature1.jpeg" alt="Nature Image 1" />
+          <img src="img/Nature/nature2.jpg" alt="Nature Image 1" />
+          <img src="img/Nature/nature3.jpg" alt="Nature Image 1" />
+        </div>
+        <div class="image animals">
+          <img src="img/Animal/animal1.jpg" alt="Animals Image 1" />
+          <img src="img/Animal/animal2.jpg" alt="Animals Image 1" />
+          <img src="img/Animal/animal3.jpg" alt="Animals Image 1" />
+        </div>
+        <div class="image travel">
+          <img src="img/Travel/travel1.jpeg" alt="Travel Image 1" />
+          <img src="img/Travel/travel2.jpg" alt="Travel Image 2" />
+          <img src="img/Travel/travel3.jpeg" alt="Travel Image 3" />
+        </div>
+        <!-- Add more images with different categories -->
+      </div>
+    </section>
+  </body>
+</html>

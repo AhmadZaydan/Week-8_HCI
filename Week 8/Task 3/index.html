@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="../Task 1/index.html">Intercative Contact Form</a>
+    <br />
+    <a href="../Task 2/index.html">Image Gallery with Filters</a>
+    <br />
+    <section class="container">
+      <div class="planner">
+        <div class="column" id="todo-column">
+          <h2>To Do</h2>
+          <button class="add-task">Add Task</button>
+          <div class="task" draggable="true">
+            <input type="text" placeholder="New Task" />
+            <button class="delete-task">Delete</button>
+          </div>
+        </div>
+
+        <div class="column" id="in-progress-column">
+          <h2>In Progress</h2>
+        </div>
+
+        <div class="column" id="completed-column">
+          <h2>Completed</h2>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      $(document).ready(function () {
+        // Enable drag and drop
+        $(".task").on("dragstart", function (event) {
+          $(this).addClass("dragging");
+        });
+
+        $(".column").on("dragover", function (event) {
+          event.preventDefault();
+          const draggingElement = $(".dragging");
+          draggingElement.detach().appendTo($(this));
+        });
+
+        $(".task").on("dragend", function () {
+          $(this).removeClass("dragging");
+        });
+
+        // Add new task
+        $("#todo-column").on("click", ".add-task", function () {
+          const newTaskInput = $(
+            '<div class="task" draggable="true"><input type="text" placeholder="New Task"><button class="delete-task">Delete</button></div>'
+          );
+          $(this).parent().append(newTaskInput);
+          // Enable drag and drop
+          $(".task").on("dragstart", function (event) {
+            $(this).addClass("dragging");
+          });
+
+          $(".column").on("dragover", function (event) {
+            event.preventDefault();
+            const draggingElement = $(".dragging");
+            draggingElement.detach().appendTo($(this));
+          });
+
+          $(".task").on("dragend", function () {
+            $(this).removeClass("dragging");
+          });
+        });
+
+        // Delete task
+        $(".planner").on("click", ".delete-task", function () {
+          $(this).parent().remove();
+        });
+      });
+    </script>
+  </body>
+</html>

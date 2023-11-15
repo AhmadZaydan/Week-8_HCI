@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#contact-form").submit(function (e) {
+          // Check if any of the required fields are empty
+          if (
+            !$("#firstname").val() ||
+            !$("#lastname").val() ||
+            !$("#email").val() ||
+            !$("#phoneNum").val() ||
+            !$("#message").val()
+          ) {
+            alert("Please fill in all required fields.");
+            e.preventDefault(); // Prevent the form from submitting
+          }
+          // You can add more specific validation if needed
+          else if (!isValidEmail($("#email").val())) {
+            alert("Please enter a valid email address.");
+            e.preventDefault();
+          }
+          // Add more conditions as needed
+        });
+
+        // Function to validate email format
+        function isValidEmail(email) {
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+      });
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="../Task 2/index.html">Image Gallery with Filters</a>
+    <br />
+    <a href="../Task 3/index.html">Drag and Drop Planner</a>
+    <section class="container">
+      <form id="contact-form">
+        <h1>Interactive Contact Form</h1>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          id="firstname"
+          placeholder="First name"
+          required
+        />
+        <input
+          type="text"
+          name="name"
+          id="lastname"
+          placeholder="Last name"
+          required
+        />
+        <label for="email">Email:</label>
+        <input type="text" name="" id="email" required />
+        <label for="phoneNum">Phone:</label>
+        <input type="text" name="" id="phoneNum" required />
+        <label for="message">Message:</label>
+        <textarea
+          name=""
+          id="message"
+          rows="10"
+          style="resize: none"
+        ></textarea>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+    </section>
+  </body>
+</html>
